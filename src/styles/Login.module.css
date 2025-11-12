@@ -1,0 +1,24 @@
+.login-container h2 {
+  color: #7CC142;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-container form {
+  display: grid;
+  gap: 1rem;
+}
+
+.login-container input {
+  border: 1px solid #0072CE;
+}
+
+.login-container button {
+  background-color: #0072CE;
+  color: white;
+  font-weight: bold;
+}
+
+.login-container button:disabled {
+  background-color: #aaa;
+}
