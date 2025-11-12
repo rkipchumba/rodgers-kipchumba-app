@@ -6,6 +6,7 @@ import { auth } from "../auth";
 import type { User } from "../types/user";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../styles/Login.module.css";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -30,7 +31,7 @@ const Login: React.FC = () => {
         return;
       }
 
-      auth.setToken("mock-jwt-token"); // simulate JWT
+      auth.setToken("mock-jwt-token");
       navigate("/users", { replace: true });
     } catch {
       toast.error("Login failed", { position: "top-right" });
@@ -40,27 +41,38 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>KCB Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? "Signing in..." : "Sign in"}
-        </button>
-      </form>
+    <div className={styles.loginPage}>
+      <div className={styles.loginCard}>
+        <h2>KCB Login</h2>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <input
+              className={styles.inputField}
+              placeholder=" "
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+            />
+            <label className={styles.inputLabel}>Username</label>
+          </div>
 
+          <div className={styles.inputGroup}>
+            <input
+              type="password"
+              className={styles.inputField}
+              placeholder=" "
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+            <label className={styles.inputLabel}>Password</label>
+          </div>
+
+          <button className={styles.submitBtn} type="submit" disabled={loading}>
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+      </div>
       <ToastContainer autoClose={3000} />
     </div>
   );
